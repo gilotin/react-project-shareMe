@@ -4,6 +4,7 @@ import { Home } from "./components/Home";
 import { Register } from "./components/Register";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
+import { Login } from "./components/Login";
 
 function App() {
     return (
@@ -12,6 +13,8 @@ function App() {
                 <Home/>
                 <Register/>
             <ImageCards/>
+
+            <Login/>
         </>
     );
 }

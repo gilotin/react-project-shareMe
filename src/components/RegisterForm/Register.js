@@ -3,8 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import Alert from "react-bootstrap/Alert";
 import InputGroup from "react-bootstrap/InputGroup";
+import { Link } from "react-router-dom";
+
 
 export function Register() {
     const [validated, setValidated] = useState(false);
@@ -83,7 +84,7 @@ export function Register() {
                 </Modal.Body>
                 <Card.Footer className="text-center text-muted text-inline">
                     <Form.Text>
-                        Are you registered already? <Alert.Link href="/login">Login</Alert.Link>
+                        Are you registered already? <Link to="/login">Login</Link>
                     </Form.Text>
                 </Card.Footer>
             </Modal.Dialog>

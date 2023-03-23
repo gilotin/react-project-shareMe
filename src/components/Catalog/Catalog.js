@@ -1,9 +1,9 @@
 import { ImageCards } from "./ImageCard/ImageCards";
 
-export function Catalog() {
+export function Catalog({photos}) {
     return (
-        <>
-            <ImageCards />
-        </>
+        <div className="main-catalog">
+       { photos.map(photo => <ImageCards key={photo._id} {...photo}/> )}
+        </div>
     );
 }

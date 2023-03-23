@@ -1,50 +1,23 @@
+import { useState } from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-export function ImageCards(props) {
+export function ImageCards(photo) {
+
     return (
         <Container>
-            <Row>
-                {/* {props.images.map((image) => ( */}
                 <Col md={4}>
-                    <Card className="my-3" onClick={()=> console.log('Hello Eli')}>
-                        <Card.Img variant="top" src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" />
+                    <Card className="my-3">
+                        <Card.Img variant="top" src={photo.url} />
                         <Card.Body>
-                            <Card.Title>Title</Card.Title>
-                            <Card.Text>description</Card.Text>
+                            <Card.Title>{photo.title}</Card.Title>
+                            <Card.Text>{photo.description}</Card.Text>
+                            <Link to={`/catalog/${photo._id}`} className="details-button">
+                                Details
+                            </Link>
                         </Card.Body>
                     </Card>
                 </Col>
-                {/* ))} */}
-            </Row>
-
-            <Row>
-                {/* {props.images.map((image) => ( */}
-                <Col md={4}>
-                    <Card className="my-3" onClick={()=> console.log('Hello Eli')}>
-                        <Card.Img variant="top" src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" />
-                        <Card.Body>
-                            <Card.Title>Title</Card.Title>
-                            <Card.Text>description</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                {/* ))} */}
-            </Row>
-
-            <Row>
-                {/* {props.images.map((image) => ( */}
-                <Col md={4}>
-                    <Card className="my-3" onClick={()=> console.log('Hello Eli')}>
-                        <Card.Img variant="top" src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg" />
-                        <Card.Body>
-                            <Card.Title>Title</Card.Title>
-                            <Card.Text>description</Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                {/* ))} */}
-            </Row>
         </Container>
-        
     );
 }

@@ -1,5 +1,11 @@
+import './Search.module.css'
+
 export function Search(){
     return(
-        <h1>Place To Search</h1>
+        <form onsubmit="event.preventDefault();" role="search">
+        <label for="search">Search for stuff</label>
+        <input id="search" type="search" placeholder="Search..." autofocus required />
+        <button type="submit">Go</button>    
+      </form>
     );
 }

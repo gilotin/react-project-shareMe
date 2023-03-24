@@ -17,6 +17,7 @@ import { DetailPage } from "./components/DetailsPage/DetailsPage";
 
 function App() {
     const [photos, setPhotos] = useState([]);
+
     useEffect(() => {
         photoService.getAll().then((result) => {
             setPhotos(result);

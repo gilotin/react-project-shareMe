@@ -32,7 +32,7 @@ export function Navigation() {
                                     <NavDropdown.Item>My Profile</NavDropdown.Item>
                                 </LinkContainer>
                                 <LinkContainer to={"/profile/create"}>
-                                    <NavDropdown.Item>Share</NavDropdown.Item>
+                                    <NavDropdown.Item>Create</NavDropdown.Item>
                                 </LinkContainer>
                                 <LinkContainer to={"/logout"}>
                                     <NavDropdown.Item>Logout</NavDropdown.Item>

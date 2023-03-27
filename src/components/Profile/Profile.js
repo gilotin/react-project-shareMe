@@ -1,28 +1,34 @@
-// import { Link } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
+import "./Profile.css";
 
 export function Profile() {
     return (
         <>
-            <h1>Place for your profile</h1>
-            {/* <Link to={`/profile/create`}>Create</Link> */}
-            <Card>
-                <img src="" alt="Profile Pic" />
+            <div id="profile-title">
+                <h1>Place for your profile</h1>
+            </div>
+
+            <Card id="profile-pic">
+                <img
+                    src="https://riverlegacy.org/wp-content/uploads/2021/07/blank-profile-photo.jpeg"
+                    alt="Profile pic"
+                />
             </Card>
-            <h3>Hello Username!!!</h3>
-            <h4></h4>
-            <Button type="button" href="/profile/create">
-                Create{" "}
-            </Button>{" "}
-            <Button type="button" href="/profile/deleteProfile">
-                Delete Profile{" "}
-            </Button>{" "}
-            <Button type="button" href="/profile/myCollection">
-                My Collection{" "}
-            </Button>{" "}
-            <Button type="button" href="/profile/editProfile">
-                Edit Profile
-            </Button>{" "}
+
+            <div id="profile-btn">
+                <Button type="button" variant="success" href="/profile/myCollection">
+                    My Collection{" "}
+                </Button>{" "}
+                <Button type="button" href="/profile/createImage">
+                    Create{" "}
+                </Button>{" "}
+                <Button type="button" variant="danger" href="/profile/deleteProfile">
+                    Delete Profile{" "}
+                </Button>{" "}
+                <Button type="button" variant="warning" href="/profile/editProfile">
+                    Edit Profile
+                </Button>{" "}
+            </div>
         </>
     );
 }

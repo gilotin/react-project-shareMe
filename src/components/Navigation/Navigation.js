@@ -31,7 +31,7 @@ export function Navigation() {
                                 <LinkContainer to={"/profile"}>
                                     <NavDropdown.Item>My Profile</NavDropdown.Item>
                                 </LinkContainer>
-                                <LinkContainer to={"/profile/create"}>
+                                <LinkContainer to={"/profile/createImage"}>
                                     <NavDropdown.Item>Create</NavDropdown.Item>
                                 </LinkContainer>
                                 <LinkContainer to={"/logout"}>

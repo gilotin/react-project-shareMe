@@ -15,6 +15,7 @@ import { Profile } from "./components/Profile/Profile";
 import { CreateImage } from "./components/Profile/Create/CreateImage";
 import { DetailPage } from "./components/DetailsPage/DetailsPage";
 import { AuthContext } from "./contexts/AuthContext";
+import * as authService from "./services/authService";
 
 function App() {
     const [photos, setPhotos] = useState([]);
@@ -27,7 +28,8 @@ function App() {
     }, []);
 
     async function onLoginSubmit(data) {
-        console.log(data);
+        const user = await authService.login(data)
+        console.log(user);
     }
 
     return (

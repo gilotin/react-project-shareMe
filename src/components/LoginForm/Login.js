@@ -9,15 +9,19 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
 
+import "./login.css";
+
 export function Login() {
     const { onLoginSubmit } = useContext(AuthContext);
-    const { values, changeHandler, onSubmit} = useForm({ email: "", password: "" }, onLoginSubmit);
-
+    const { values, changeHandler, onSubmit } = useForm({ email: "", password: "" }, onLoginSubmit);
 
     return (
         <div className="modal show" style={{ display: "block", position: "initial" }}>
             <Modal.Body>
-                <Form  method="POST"  onSubmit={onSubmit}>
+                <Form id="login-form" method="POST" onSubmit={onSubmit}>
+                    <div id="login-title">
+                        <h1>Login</h1>
+                    </div>
                     <Form.Group className="mb-3" controlId="loginEmail">
                         <Form.Label>Email address</Form.Label>
                         <InputGroup hasValidation>

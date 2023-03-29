@@ -1,5 +1,7 @@
 import { ImageCards } from "./ImageCard/ImageCards";
 
+import "./catalog.css"
+
 export function Catalog({photos}) {
     return (
         <div className="main-catalog">

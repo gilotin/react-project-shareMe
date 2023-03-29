@@ -8,17 +8,17 @@ import { Link } from "react-router-dom";
 
 
 export function Register() {
-    const [validated, setValidated] = useState(false);
+    // const [validated, setValidated] = useState(false);
 
-    function handleSubmit(event) {
-        const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
+    // function handleSubmit(event) {
+    //     const form = event.currentTarget;
+    //     if (form.checkValidity() === false) {
+    //         event.preventDefault();
+    //         event.stopPropagation();
+    //     }
 
-        setValidated(true);
-    }
+    //     setValidated(true);
+    // }
 
     return (
         <div className="modal show" style={{ display: "block", position: "initial" }}>
@@ -28,7 +28,7 @@ export function Register() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                    <Form noValidate  onSubmit={''}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <InputGroup hasValidation>

@@ -30,16 +30,25 @@ function App() {
 
     async function onLoginSubmit(data) {
         try {
-            const user = await authService.login(data);
-            setAuth(user);
+            const result = await authService.login(data);
+            setAuth(result);
             navigate("/catalog");
         } catch (error) {
             console.log(error.message);
         }
     }
 
+    const contextData = {
+        onLoginSubmit,
+        userId: auth._id,
+        token: auth.accessToken,
+        userEmail: auth.email,
+        isAuthenticated :  !!auth.accessToken 
+        ,
+    }
+
     return (
-        <AuthContext.Provider value={{ onLoginSubmit }}>
+        <AuthContext.Provider value={contextData}>
             <div className="background">
                 <Navigation />
                 <main id="main-content">

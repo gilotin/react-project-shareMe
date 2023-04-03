@@ -28,7 +28,7 @@ export function Register() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Form noValidate  onSubmit={''}>
+                    <Form noValidate >
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <InputGroup hasValidation>

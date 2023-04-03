@@ -6,19 +6,18 @@ export async function login(loginData) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginData),
     });
-
-    if (!response.ok) {
-        const result = await response.json();
-        throw result;
-        
-    }
-
-    try {
-        const result = await response.json();
-        return result
-
-    } catch (error) {
-
+    
+    if (response.status === 204) {
         return {};
     }
+
+    const result = await response.json();
+    
+    if (!response.ok) {
+        throw result;
+    }
+
+    return result;
+
+    // TO DO create requester for all services !!!
 }

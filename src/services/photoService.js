@@ -12,3 +12,6 @@ export async function getOne(photoId) {
     const result = await response.json();
     return result;
 }
+
+
+    // TO DO create requester for all services !!!

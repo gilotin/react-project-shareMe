@@ -3,8 +3,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkContainer } from "react-router-bootstrap";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export function Navigation() {
+    const { isAuthenticated } = useContext(AuthContext);
+
     return (
         <header>
             <Navbar bg="Success" variant="dark">
@@ -22,7 +26,24 @@ export function Navigation() {
                         <LinkContainer to={"/catalog"}>
                             <Nav.Link>Catalog</Nav.Link>
                         </LinkContainer>
-                        <div className="entry-nav">
+                        {!isAuthenticated ? (
+                            <>
+                                <LinkContainer to={"/register"}>
+                                    <Nav.Link>Register</Nav.Link>
+                                </LinkContainer>
+                                <LinkContainer to={"/login"}>
+                                    <Nav.Link>Login</Nav.Link>
+                                </LinkContainer>
+                            </>
+                        ) : (
+                            <>
+                                <LinkContainer to={"/profile"}>
+                                    <Nav.Link>Profile</Nav.Link>
+                                </LinkContainer>
+                            </>
+                        )}
+
+                        {/* <div className="entry-nav">
                             <NavDropdown
                                 id="nav-dropdown-dark-example"
                                 title="Profile"
@@ -38,7 +59,7 @@ export function Navigation() {
                                     <NavDropdown.Item>Logout</NavDropdown.Item>
                                 </LinkContainer>
                             </NavDropdown>
-                        </div>
+                        </div> */}
                     </Nav>
                 </Container>
             </Navbar>

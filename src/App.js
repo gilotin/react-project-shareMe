@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import * as photoService from "./services/photoService";
 
 import "./App.css";
@@ -18,6 +18,7 @@ import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
 
 function App() {
+    const navigate = useNavigate();
     const [photos, setPhotos] = useState([]);
     const [auth, setAuth] = useState({});
 
@@ -28,8 +29,13 @@ function App() {
     }, []);
 
     async function onLoginSubmit(data) {
-        const user = await authService.login(data)
-        console.log(user);
+        try {
+            const user = await authService.login(data);
+            setAuth(user);
+            navigate("/catalog");
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
     return (

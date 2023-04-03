@@ -16,6 +16,7 @@ import { CreateImage } from "./components/Profile/Create/CreateImage";
 import { DetailPage } from "./components/DetailsPage/DetailsPage";
 import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
+import { Logout } from "./components/Logout/logout";
 
 function App() {
     const navigate = useNavigate();
@@ -38,15 +39,46 @@ function App() {
         }
     }
 
+    async function onRegisterSubmit(data) {
+        const {repeatPassword, ...registerData } = data;
+
+        try {
+            if (!registerData.email || !registerData.userName || !registerData.password || !repeatPassword) {
+                throw new Error("Fill all the fields");
+            }
+
+            if (registerData.password != repeatPassword) {
+                throw new Error("Password mismatch!");
+            }
+
+            const result = await authService.register(registerData);
+
+            setAuth(result);
+
+            navigate("/catalog");
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    
+    async function onLogout(token){
+        await authService.logout(token);
+        setAuth({});
+        localStorage.clear();
+    }
+    
     const contextData = {
         onLoginSubmit,
-        userId: auth._id,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        isAuthenticated :  !!auth.accessToken 
-        ,
-    }
-
+        userId: auth?._id,
+        token: auth?.accessToken,
+        userEmail: auth?.email,
+        isAuthenticated: !!auth?.accessToken,
+        onRegisterSubmit,
+        onLogout
+    };
+    
+    
+    
     return (
         <AuthContext.Provider value={contextData}>
             <div className="background">
@@ -60,6 +92,7 @@ function App() {
                         <Route path="/catalog" element={<Catalog photos={photos} />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
+                        <Route path="/profile/logout" element={<Logout onLogout={onLogout}/>} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>
                 </main>

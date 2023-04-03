@@ -27,6 +27,8 @@ export function Profile() {
                 </Button>{" "}
                 <Button type="button" variant="warning" href="/profile/editProfile">
                     Edit Profile
+                </Button>{" "}<Button type="button" variant="warning" href="/profile/logout">
+                    Logout
                 </Button>{" "}
             </div>
         </>

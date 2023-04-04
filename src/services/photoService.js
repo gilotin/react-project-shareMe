@@ -13,5 +13,22 @@ export async function getOne(photoId) {
     return result;
 }
 
+export async function create(photoData, token) {
+    const response = await fetch(`${baseUrl}`, {
+        method: "POST",
+        headers: {
+            "Content-type": "Application/json",
+            "X-Authorization":  {token} ,
+        },
+        body: JSON.stringify(photoData),
+    });
 
-    // TO DO create requester for all services !!!
+
+    try {
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        return error.message;
+    }
+}
+// TO DO create requester for all services !!

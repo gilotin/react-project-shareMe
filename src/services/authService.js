@@ -1,4 +1,3 @@
-
 const baseUrl = "http://localhost:3030/users";
 
 export async function login(loginData) {
@@ -53,9 +52,9 @@ export async function logout(token) {
         method: "GET",
         headers: {
             "Content-type": "Application/json",
-            "X-Authorization": token
+            "X-Authorization" : token
         },
     });
-    
+
     return response.json();
 }

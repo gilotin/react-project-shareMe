@@ -47,7 +47,9 @@ export async function register(data) {
 
 // NEED FIXING
 
-export async function logout(token) {
+export async function logout() {
+
+    const token = localStorage.getItem('token');
     const response = await fetch(`${baseUrl}/logout`, {
         method: "GET",
         headers: {
@@ -55,6 +57,10 @@ export async function logout(token) {
             "X-Authorization" : token
         },
     });
-
-    return response.json();
+    
+    if(response.status === '204'){
+        return {}
+    }else{
+        localStorage.clear();
+    }
 }

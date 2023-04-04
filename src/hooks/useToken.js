@@ -1,5 +1,0 @@
-
-
-function useToken(service) {
-    
-}

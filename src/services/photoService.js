@@ -13,12 +13,15 @@ export async function getOne(photoId) {
     return result;
 }
 
-export async function create(photoData, token) {
+//NEED REFACTORING
+
+export async function create(photoData) {
+    const token = localStorage.getItem('token')
     const response = await fetch(`${baseUrl}`, {
         method: "POST",
         headers: {
             "Content-type": "Application/json",
-            "X-Authorization":  {token} ,
+            "X-Authorization":  token ,
         },
         body: JSON.stringify(photoData),
     });

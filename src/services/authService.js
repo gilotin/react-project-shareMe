@@ -1,5 +1,7 @@
 const baseUrl = "http://localhost:3030/users";
 
+// TO DO create requester for all services !!!
+
 export async function login(loginData) {
     const response = await fetch(`${baseUrl}/login`, {
         method: "POST",
@@ -21,7 +23,6 @@ export async function login(loginData) {
 
     return result;
 
-    // TO DO create requester for all services !!!
 }
 
 export async function register(data) {
@@ -45,7 +46,7 @@ export async function register(data) {
     }
 }
 
-// NEED FIXING
+//NEED Refactoring 
 
 export async function logout() {
 

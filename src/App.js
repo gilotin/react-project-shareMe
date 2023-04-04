@@ -30,19 +30,19 @@ function App() {
     }, []);
 
     async function onCreatePhotoSubmit(data) {
-
-
-
         const newPhoto = await photoService.create(data);
 
         setPhotos((photos) => [...photos, newPhoto]);
+        
+        navigate("/catalog");
+
     }
 
     async function onLoginSubmit(data) {
         try {
             const result = await authService.login(data);
             setAuth(result);
-            localStorage.setItem('token', result.accessToken);
+            localStorage.setItem("token", result.accessToken);
             navigate("/catalog");
         } catch (error) {
             console.log(error.message);
@@ -68,7 +68,7 @@ function App() {
 
             const result = await authService.register(registerData);
 
-            localStorage.setItem('token', 'result.accessToken');
+            localStorage.setItem("token", "result.accessToken");
             setAuth(result);
 
             navigate("/catalog");
@@ -78,7 +78,7 @@ function App() {
     }
 
     // TODO
-    
+
     const contextData = {
         onLoginSubmit,
         onLogout,
@@ -90,7 +90,6 @@ function App() {
         isAuthenticated: !!auth?.accessToken,
     };
 
-    
     async function onLogout() {
         await authService.logout();
         setAuth({});

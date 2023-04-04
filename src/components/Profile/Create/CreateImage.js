@@ -12,7 +12,7 @@ export function CreateImage() {
         {
             title: "",
             author: "",
-            img: "",
+            url: "",
             country: "",
             city: "",
             description: "",
@@ -54,8 +54,8 @@ export function CreateImage() {
                         type="text"
                         placeholder="Paste url"
                         onChange={changeHandler}
-                        values={values.img}
-                        name="img"
+                        values={values.url}
+                        name="url"
                     />
                 </Form.Group>
 

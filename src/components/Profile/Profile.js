@@ -1,4 +1,5 @@
 import { Button, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Profile.css";
 
 export function Profile() {
@@ -16,20 +17,30 @@ export function Profile() {
             </Card>
 
             <div id="profile-btn">
-                <Button type="button" variant="success" href="/profile/myCollection">
-                    My Collection{" "}
-                </Button>{" "}
-                <Button type="button" href="/profile/createImage">
-                    Create{" "}
-                </Button>{" "}
-                <Button type="button" variant="danger" href="/profile/deleteProfile">
-                    Delete Profile{" "}
-                </Button>{" "}
-                <Button type="button" variant="warning" href="/profile/editProfile">
-                    Edit Profile
-                </Button>{" "}<Button type="button" variant="warning" href="/profile/logout">
-                    Logout
-                </Button>{" "}
+                <Link to={"/profile/myCollection"}>
+                    <Button type="button" variant="success">
+                        My Collection{" "}
+                    </Button>{" "}
+                </Link>
+                <Link to={"/profile/createImage"}>
+                    <Button type="button">Create </Button>{" "}
+                </Link>
+                <Link to={"/profile/deleteProfile"}>
+                    <Button type="button" variant="danger">
+                        Delete Profile{" "}
+                    </Button>{" "}
+                </Link>
+                <Link to={"/profile/editProfile"}>
+                    <Button type="button" variant="warning">
+                        Edit Profile
+                    </Button>{" "}
+                </Link>
+                <Link to={"/profile/logout"}>
+                    {" "}
+                    <Button type="button" variant="warning">
+                        Logout
+                    </Button>{" "}
+                </Link>
             </div>
         </>
     );

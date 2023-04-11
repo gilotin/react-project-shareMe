@@ -34,17 +34,20 @@ function App() {
         const newPhoto = await photoService.create(data);
 
         setPhotos((photos) => [...photos, newPhoto]);
-        
-        navigate("/catalog");
 
+        navigate("/catalog");
     }
 
     async function onLoginSubmit(data) {
-        
         try {
             const result = await authService.login(data);
-            setAuth(result);
-            localStorage.setItem("token", result.accessToken);
+            
+            const { password, ...user } = result;
+            
+            localStorage.setItem("token", user.accessToken);
+            setAuth(user);
+            console.log(user);
+
             navigate("/catalog");
         } catch (error) {
             console.log(error.message);
@@ -69,10 +72,9 @@ function App() {
             }
 
             const result = await authService.register(registerData);
-
+            const {password, ...user} = result;
             localStorage.setItem("token", result.accessToken);
-            setAuth(result);
-
+            setAuth(user);
             navigate("/catalog");
         } catch (error) {
             console.log(error.message);
@@ -86,9 +88,10 @@ function App() {
         onLogout,
         onRegisterSubmit,
         onCreatePhotoSubmit,
-        userId: auth?._ownerId,
+        email: auth?.email,
+        userName : auth?.userName,
+        userId: auth?._id,
         token: auth?.accessToken,
-        userEmail: auth?.email,
         isAuthenticated: !!auth?.accessToken,
     };
 
@@ -111,7 +114,7 @@ function App() {
                         <Route path="/catalog" element={<Catalog photos={photos} />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
-                        <Route path="/profile/myCollection" element={< MyCollection />} />
+                        <Route path="/profile/myCollection" element={<MyCollection />} />
                         <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>

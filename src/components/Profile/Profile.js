@@ -1,12 +1,20 @@
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./Profile.css";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useContext } from "react";
 
 export function Profile() {
+    const user = useContext(AuthContext);
+
     return (
         <>
             <div id="profile-title">
-                <h1>Place for your profile</h1>
+                {user.userName ? (
+                    <h1>Hello {(user.userName).toUpperCase()}, nice to see you!</h1>
+                ) : (
+                    <h1>Hello {(user.email).toUpperCase()}, nice to see you!</h1>
+                )}
             </div>
 
             <Card id="profile-pic">

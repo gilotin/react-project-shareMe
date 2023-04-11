@@ -34,4 +34,14 @@ export async function create(photoData) {
         return error.message;
     }
 }
+
+
+export async function getByOwnerId(_ownerId) {
+
+    const query = encodeURIComponent(`_ownerId="${_ownerId}"`);
+    const response = await fetch(`${baseUrl}?${query}`);
+    const result = await response.json();
+    const myPhotos = Object.values(result);
+    return myPhotos;
+}
 // TO DO create requester for all services !!

@@ -13,6 +13,7 @@ import { Search } from "./components/Search/Search";
 import { Catalog } from "./components/Catalog/Catalog";
 import { Profile } from "./components/Profile/Profile";
 import { CreateImage } from "./components/Profile/Create/CreateImage";
+import { MyCollection } from "./components/Profile/MyCollection/MyCollection";
 import { DetailPage } from "./components/DetailsPage/DetailsPage";
 import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
@@ -39,6 +40,7 @@ function App() {
     }
 
     async function onLoginSubmit(data) {
+        
         try {
             const result = await authService.login(data);
             setAuth(result);
@@ -68,7 +70,7 @@ function App() {
 
             const result = await authService.register(registerData);
 
-            localStorage.setItem("token", "result.accessToken");
+            localStorage.setItem("token", result.accessToken);
             setAuth(result);
 
             navigate("/catalog");
@@ -84,7 +86,7 @@ function App() {
         onLogout,
         onRegisterSubmit,
         onCreatePhotoSubmit,
-        userId: auth?._id,
+        userId: auth?._ownerId,
         token: auth?.accessToken,
         userEmail: auth?.email,
         isAuthenticated: !!auth?.accessToken,
@@ -109,6 +111,7 @@ function App() {
                         <Route path="/catalog" element={<Catalog photos={photos} />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
+                        <Route path="/profile/myCollection" element={< MyCollection />} />
                         <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>

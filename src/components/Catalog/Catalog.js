@@ -1,6 +1,6 @@
 import { ImageCards } from "./ImageCard/ImageCards";
 
-import "./catalog.css"
+import "./catalog.module.css"
 
 export function Catalog({photos}) {
     return (

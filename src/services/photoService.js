@@ -36,10 +36,10 @@ export async function create(photoData) {
 }
 
 
-export async function getByOwnerId(_ownerId) {
+export async function getByOwnerId(ownerId) {
 
-    const query = encodeURIComponent(`_ownerId="${_ownerId}"`);
-    const response = await fetch(`${baseUrl}?${query}`);
+    const query = encodeURIComponent(`_ownerId="${ownerId}"`);
+    const response = await fetch(`${baseUrl}?where=${query}`);
     const result = await response.json();
     const myPhotos = Object.values(result);
     return myPhotos;

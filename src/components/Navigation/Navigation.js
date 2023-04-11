@@ -14,7 +14,7 @@ export function Navigation() {
             <Navbar bg="Success" variant="dark">
                 <Container>
                     <LinkContainer to="/">
-                        <Navbar.Brand>Navbar</Navbar.Brand>
+                        <Navbar.Brand>ShareMe</Navbar.Brand>
                     </LinkContainer>
                     <Nav className="me-auto">
                         <LinkContainer to={"/"}>

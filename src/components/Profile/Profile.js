@@ -11,9 +11,9 @@ export function Profile() {
         <>
             <div id="profile-title">
                 {user.userName ? (
-                    <h1>Hello {(user.userName).toUpperCase()}, nice to see you!</h1>
+                    <h1>Hello {user.userName?.toUpperCase()}, nice to see you!</h1>
                 ) : (
-                    <h1>Hello {(user.email).toUpperCase()}, nice to see you!</h1>
+                    <h1>Hello {user.email?.toUpperCase()}, nice to see you!</h1>
                 )}
             </div>
 
@@ -25,7 +25,7 @@ export function Profile() {
             </Card>
 
             <div id="profile-btn">
-                <Link to={"/profile/myCollection"}>
+                <Link to={"/profile/myCollection"} >
                     <Button type="button" variant="success">
                         My Collection{" "}
                     </Button>{" "}

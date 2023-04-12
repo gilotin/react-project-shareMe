@@ -41,7 +41,6 @@ export async function getByOwnerId(ownerId) {
     const query = encodeURIComponent(`_ownerId="${ownerId}"`);
     const response = await fetch(`${baseUrl}?where=${query}`);
     const result = await response.json();
-    const myPhotos = Object.values(result);
-    return myPhotos;
+    return  result
 }
 // TO DO create requester for all services !!

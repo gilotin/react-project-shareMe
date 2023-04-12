@@ -115,6 +115,7 @@ function App() {
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
                         <Route path="/profile/myCollection" element={<MyCollection />} />
+                        <Route path="/myCollection/:photoId" element={<DetailPage />} />
                         <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>

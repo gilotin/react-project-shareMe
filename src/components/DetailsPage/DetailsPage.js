@@ -1,13 +1,16 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 import { Link } from "react-router-dom";
 
 import * as photoService from "../../services/photoService";
 
 export function DetailPage() {
+    const user = useContext(AuthContext);
+
     const { photoId } = useParams();
     const [photoDetails, setPhotoDetails] = useState({});
-
     const previousPage = useNavigate();
 
     useEffect(() => {
@@ -31,6 +34,14 @@ export function DetailPage() {
             <button onClick={() => previousPage(-1)} type="button">
                 BACK
             </button>
+            {user.userId === photoDetails._ownerId ? (
+                <>
+                    <button type="button">EDIT</button>
+                    <button type="button">DELETE</button>
+                </>
+            ) : (
+                ""
+            )}
         </div>
     );
 }

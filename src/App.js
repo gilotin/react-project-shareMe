@@ -41,13 +41,11 @@ function App() {
     async function onLoginSubmit(data) {
         try {
             const result = await authService.login(data);
-            
+
             const { password, ...user } = result;
-            
+
             localStorage.setItem("token", user.accessToken);
             setAuth(user);
-            console.log(user);
-
             navigate("/catalog");
         } catch (error) {
             console.log(error.message);
@@ -72,7 +70,7 @@ function App() {
             }
 
             const result = await authService.register(registerData);
-            const {password, ...user} = result;
+            const { password, ...user } = result;
             localStorage.setItem("token", result.accessToken);
             setAuth(user);
             navigate("/catalog");
@@ -89,7 +87,7 @@ function App() {
         onRegisterSubmit,
         onCreatePhotoSubmit,
         email: auth?.email,
-        userName : auth?.userName,
+        userName: auth?.userName,
         userId: auth?._id,
         token: auth?.accessToken,
         isAuthenticated: !!auth?.accessToken,

@@ -17,7 +17,7 @@ export function MyCollection() {
             setMyPhotos(result);
         });
     }, [id]);
-    console.log(myPhotos);
+    
     return (
         <>
             <div>

@@ -22,7 +22,7 @@ export function MyCollection() {
         <>
             <div>
                 {myPhotos.map((photo) => (
-                    <Card className="my-3">
+                    <Card key={photo._id} className="my-3">
                         <Link to={`/myCollection/${photo._id}`} className="details-button">
                             <Card.Img title={photo.title} src={photo.url} />
                         </Link>

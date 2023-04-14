@@ -12,11 +12,17 @@ export function useForm(initialValues, onSubmitHandler) {
         
 
         onSubmitHandler(values);
+        setValues(initialValues)
+    }
+
+    function changeValues(newValues){
+        setValues(newValues)
     }
 
     return {
         values,
         changeHandler,
         onSubmit,
+        changeValues
     };
 }

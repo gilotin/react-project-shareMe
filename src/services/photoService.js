@@ -35,6 +35,28 @@ export async function create(photoData) {
     }
 }
 
+export async function edit(photoData, photoId) {
+    const token = localStorage.getItem('token')
+    const response = await fetch(`${baseUrl}/${photoId}`, {
+        method: "PUT",
+        headers: {
+            "Content-type": "Application/json",
+            "X-Authorization":  token ,
+        },
+        body: JSON.stringify(photoData),
+    });
+
+
+    try {
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        return error.message;
+    }
+}
+
+
+
 
 export async function getByOwnerId(ownerId) {
 

@@ -35,10 +35,14 @@ export function DetailPage() {
                 BACK
             </button>
             {user.userId === photoDetails._ownerId ? (
-                <>
-                    <button type="button">EDIT</button>
-                    <button type="button">DELETE</button>
-                </>
+                <div className="buttons">
+                    <Link to={`/${photoId}/edit`}  className="button">
+                        Edit
+                    </Link>
+                    <button className="button">
+                        Delete
+                    </button>
+                </div>
             ) : (
                 ""
             )}

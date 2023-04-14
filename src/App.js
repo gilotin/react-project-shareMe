@@ -18,6 +18,7 @@ import { DetailPage } from "./components/DetailsPage/DetailsPage";
 import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
 import { Logout } from "./components/Logout/Logout";
+import { Edit } from "./components/Edit/Edit";
 
 function App() {
     const navigate = useNavigate();
@@ -38,9 +39,15 @@ function App() {
         navigate("/catalog");
     }
 
+    async function onPhotoEdit(data) {
+        const editedPhoto = await photoService.edit(data, data._id);
+        setPhotos((photos) => [...photos, editedPhoto]);
+        navigate(-1);
+    }
+
     async function onLoginSubmit(data) {
         try {
-            const result = await authService.login(data);
+            const result = await authService.login(data,);
 
             const { password, ...user } = result;
 
@@ -86,6 +93,7 @@ function App() {
         onLogout,
         onRegisterSubmit,
         onCreatePhotoSubmit,
+        onPhotoEdit,
         email: auth?.email,
         userName: auth?.userName,
         userId: auth?._id,
@@ -114,6 +122,7 @@ function App() {
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
                         <Route path="/profile/myCollection" element={<MyCollection />} />
                         <Route path="/myCollection/:photoId" element={<DetailPage />} />
+                        <Route path=":photoId/edit" element={<Edit />} />
                         <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>

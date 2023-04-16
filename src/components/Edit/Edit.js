@@ -27,7 +27,7 @@ export function Edit() {
             .then(result => {
                 changeValues(result);
             });
-    }, [photoId]);
+    }, [photoId, changeValues]);
 
     return (
         <>

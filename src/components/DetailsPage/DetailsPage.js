@@ -2,15 +2,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
 import { Link } from "react-router-dom";
 
 import * as photoService from "../../services/photoService";
 
 export function DetailPage() {
     const user = useContext(AuthContext);
+    const { onDeleteHandler } = useContext(AuthContext);
 
     const { photoId } = useParams();
     const [photoDetails, setPhotoDetails] = useState({});
+    const [show, setShow] = useState(false);
     const previousPage = useNavigate();
 
     useEffect(() => {
@@ -18,6 +23,13 @@ export function DetailPage() {
             setPhotoDetails(result);
         });
     }, [photoId]);
+
+    function handleClose() {
+        setShow(false);
+    }
+    function handleShow() {
+        setShow(true);
+    }
 
     return (
         <div>
@@ -31,20 +43,41 @@ export function DetailPage() {
                 <h3>{photoDetails.location?.country}</h3>
                 <img src={photoDetails.url} alt={photoDetails.title} />
             </div>
-            <button onClick={() => previousPage(-1)} type="button">
-                BACK
-            </button>
-            {user.userId === photoDetails._ownerId ? (
+
+            {user?.userId === photoDetails._ownerId ? (
                 <div className="buttons">
-                    <Link to={`/${photoId}/edit`}  className="button">
-                        Edit
+                    <Button variant="primary" onClick={() => previousPage(-1)} className="buttons">
+                        Back
+                    </Button>
+                    <Link to={`/${photoId}/edit`}>
+                        <Button variant="primary">Edit</Button>
                     </Link>
-                    <button className="button">
+
+                    <Button variant="primary" onClick={handleShow}>
                         Delete
-                    </button>
+                    </Button>
+
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header>
+                            <Modal.Title>Alert</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Are you sure you want to delete this photo?</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="secondary" onClick={() => onDeleteHandler(photoId)}>
+                                Delete
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
             ) : (
-                ""
+                <div>
+                    <Button variant="primary" onClick={() => previousPage(-1)} className="buttons">
+                        Back
+                    </Button>
+                </div>
             )}
         </div>
     );

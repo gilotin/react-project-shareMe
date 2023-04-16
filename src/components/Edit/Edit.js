@@ -26,7 +26,6 @@ export function Edit() {
         photoService.getOne(photoId)
             .then(result => {
                 changeValues(result);
-                console.log(result);
             });
     }, [photoId]);
 

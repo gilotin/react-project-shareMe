@@ -47,7 +47,7 @@ function App() {
 
     async function onLoginSubmit(data) {
         try {
-            const result = await authService.login(data,);
+            const result = await authService.login(data);
 
             const { password, ...user } = result;
 
@@ -86,9 +86,16 @@ function App() {
         }
     }
 
-    // TODO
+    async function onDeleteHandler(id) {
+       await photoService.deletePhoto(id);
+
+       setPhotos((photos => photos.filter(photo => photo._id !== id)));
+
+        navigate(-1);
+    }
 
     const contextData = {
+        onDeleteHandler,
         onLoginSubmit,
         onLogout,
         onRegisterSubmit,

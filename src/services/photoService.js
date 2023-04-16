@@ -16,16 +16,15 @@ export async function getOne(photoId) {
 //NEED REFACTORING
 
 export async function create(photoData) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const response = await fetch(`${baseUrl}`, {
         method: "POST",
         headers: {
             "Content-type": "Application/json",
-            "X-Authorization":  token ,
+            "X-Authorization": token,
         },
         body: JSON.stringify(photoData),
     });
-
 
     try {
         const result = await response.json();
@@ -36,16 +35,15 @@ export async function create(photoData) {
 }
 
 export async function edit(photoData, photoId) {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const response = await fetch(`${baseUrl}/${photoId}`, {
         method: "PUT",
         headers: {
             "Content-type": "Application/json",
-            "X-Authorization":  token ,
+            "X-Authorization": token,
         },
         body: JSON.stringify(photoData),
     });
-
 
     try {
         const result = await response.json();
@@ -55,14 +53,29 @@ export async function edit(photoData, photoId) {
     }
 }
 
-
-
-
 export async function getByOwnerId(ownerId) {
-
     const query = encodeURIComponent(`_ownerId="${ownerId}"`);
     const response = await fetch(`${baseUrl}?where=${query}`);
     const result = await response.json();
-    return  result
+    return result;
+}
+
+export async function deletePhoto(photoId) {
+    const token = localStorage.getItem("token");
+
+    const response = await fetch(`${baseUrl}/${photoId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "Application/json",
+            "X-Authorization": token,
+        },
+    });
+
+    try {
+        const result = await response.json();
+        return result
+    } catch (error) {
+        return error.message;
+    }
 }
 // TO DO create requester for all services !!

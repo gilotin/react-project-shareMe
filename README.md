@@ -1,70 +1,86 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## **ShareMe**
 
-In the project directory, you can run:
 
-### `npm start`
+GitHub Repository URL: https://github.com/gilotin/react-project-shareMe
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## HeadingOverview
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ShareMe is a React-based web application that allows users to share and discover interesting content from various sources. Users can create an account, log in, and start sharing and exploring content. The application provides features such as user authentication, rating and social sharing options( last two - in development ).
 
-### `npm test`
+## Heading
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Installation:**
+To install and run the ShareMe project locally, follow these steps:
 
-### `npm run build`
+**Clone the GitHub repository:**
+*git clone* https://github.com/gilotin/react-project-shareMe.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Change to the project directory:**
+*cd react-project-shareMe*
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Install dependencies using npm or yarn:**
+*npm install*
+or
+*yarn install*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Load the project:**
+*npm start*
 
-### `npm run eject`
+To open the project go to http://localhost:3000 to access the ShareMe application.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Start the practice server:**
+ To start the *practice server* go to the server folder:
+ 
+ *cd react-project-shareMe* , 
+ then *cd server*,
+ then *node server.js*
+ Server runs on http://localhost":3030
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+ For more information : [server documentation](https://github.com/softuni-practice-server/softuni-practice-server)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+*ShareMe comes with the following features:*
 
-### Code Splitting
+**User Authentication**: Users can create an account, log in, and manage their profile information.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+**Content Sharing**: Users can submit images with associated metadata such as title, description, and location.
 
-### Analyzing the Bundle Size
+**Responsive Design:** The application is designed to be responsive and accessible across different devices and screen sizes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## HeadingTechnologies Used
 
-### Making a Progressive Web App
+*The ShareMe project utilizes the following technologies:*
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+**React**: A popular JavaScript library for building user interfaces.
 
-### Advanced Configuration
+**React Router**: A library for handling routing in a React application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+**React-bootstrap** : A library that takes the CSS framework of Bootstrap and replaces any existing JavaScript with strictly React components.
 
-### Deployment
+## **If you wish to contribute to the ShareMe project, you can follow these steps:**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Fork the GitHub repository.
 
-### `npm run build` fails to minify
+Create a new branch for your changes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Make your changes and commit them with descriptive commit messages.
+
+Push your changes to your forked repository.
+
+Create a pull request (PR) to the original repository.
+
+Wait for feedback and participate in the discussion if needed.
+
+## License
+
+The ShareMe project is open-source and released under the MIT License, which means it is free to use, modify, and distribute with proper attribution and without warranty.
+
+## Conclusion
+
+The ShareMe project is a React-based web application that provides users with a platform to share and discover interesting content. It comes with features such as user authentication, and social sharing options. The project utilizes technologies such as React, React-bootstrap. Contributions to the project are welcome, and it is released under the MIT License.

@@ -17,18 +17,25 @@ export function MyCollection() {
             setMyPhotos(result);
         });
     }, [id]);
-    
+
     return (
-        <>
-            <div>
-                {myPhotos.map((photo) => (
-                    <Card key={photo._id} className="my-3">
-                        <Link to={`/myCollection/${photo._id}`} className="details-button">
-                            <Card.Img title={photo.title} src={photo.url} />
-                        </Link>
-                    </Card>
-                ))}{" "}
-            </div>
-        </>
+        <div>
+            {myPhotos.length === 0 ? (
+                <div>
+                    {" "}
+                    <h1>Catalog is empty</h1>{" "}
+                </div>
+            ) : (
+                <div>
+                    {myPhotos.map((photo) => (
+                        <Card key={photo._id} className="my-3">
+                            <Link to={`/myCollection/${photo._id}`} className="details-button">
+                                <Card.Img title={photo.title} src={photo.url} />
+                            </Link>
+                        </Card>
+                    ))}{" "}
+                </div>
+            )}
+        </div>
     );
 }

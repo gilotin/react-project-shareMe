@@ -20,6 +20,7 @@ import * as authService from "./services/authService";
 import { Logout } from "./components/Logout/Logout";
 import { Edit } from "./components/Edit/Edit";
 import { AlertMessage } from "./components/AlertMessage/AlertMessage";
+import { NotFound } from "./components/NotFound/NotFound";
 
 function App() {
     const navigate = useNavigate();
@@ -95,12 +96,12 @@ function App() {
                 throw new Error("Password mismatch!");
             }
 
-            if(!registerData.email.match(regex)){
-                throw new Error('Enter valid email address')
+            if (!registerData.email.match(regex)) {
+                throw new Error("Enter valid email address");
             }
 
-            if(registerData.password.length < 6){
-                throw new Error('password must be at least 6 characters')
+            if (registerData.password.length < 6) {
+                throw new Error("password must be at least 6 characters");
             }
 
             const result = await authService.register(registerData);
@@ -175,6 +176,7 @@ function App() {
                         <Route path=":photoId/edit" element={<Edit />} />
                         <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
                 {showAlert ? <AlertMessage alert={showAlert} /> : ""}

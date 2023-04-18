@@ -9,6 +9,8 @@ import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
 import { Link } from "react-router-dom";
 
+import styles from './Register.module.css'
+
 export function Register() {
     const { onRegisterSubmit } = useContext(AuthContext);
     const { values, changeHandler, onSubmit } = useForm(
@@ -24,10 +26,10 @@ export function Register() {
 
     return (
         <div className="modal show" style={{ display: "block", position: "initial" }}>
-            <Modal.Dialog>
-                    <Modal.Title>Register</Modal.Title>
+           
+                    <div><h1 id={styles["register-title"]}>Register</h1></div>
                 <Modal.Body>
-                    <Form noValidate method="POST" onSubmit={onSubmit}>
+                    <Form id={styles["register-form"]} noValidate method="POST" onSubmit={onSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email address</Form.Label>
                             <InputGroup hasValidation>
@@ -86,14 +88,6 @@ export function Register() {
                             />
                         </Form.Group>
 
-                        <Form.Group className="mb-3">
-                            <Form.Check
-                                required
-                                label="Agree to terms and conditions"
-                                feedback="You must agree before submitting."
-                                feedbackType="invalid"
-                            />
-                        </Form.Group>
                         <Button variant="primary" type="submit">
                             Register
                         </Button>
@@ -104,7 +98,6 @@ export function Register() {
                         Are you registered already? <Link to="/login">Login</Link>
                     </Form.Text>
                 </Card.Footer>
-            </Modal.Dialog>
         </div>
     );
 }

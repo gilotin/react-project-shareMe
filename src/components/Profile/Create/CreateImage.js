@@ -4,7 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 
 import { Button, Form } from "react-bootstrap";
 
-import "./CreateImage.css";
+import styles from "./CreateImage.module.css";
 
 export function CreateImage() {
     const { onCreatePhotoSubmit } = useContext(AuthContext);
@@ -22,8 +22,8 @@ export function CreateImage() {
 
     return (
         <>
-            <Form method="POST" id="create-form" onSubmit={onSubmit}>
-                <div id="form-title">
+            <Form method="POST" id={styles["create-form"]} onSubmit={onSubmit}>
+                <div id={styles["form-title"]}>
                     <h1>Create Image</h1>
                 </div>
                 <Form.Group className="mb-3" controlId="formTitle">
@@ -90,7 +90,7 @@ export function CreateImage() {
                     values={values.description}
                 />
 
-                <Button id="from-submit-btn" variant="primary" type="submit">
+                <Button id={styles["from-submit-btn"]} variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>

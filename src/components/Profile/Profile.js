@@ -1,15 +1,17 @@
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./Profile.css";
-import { AuthContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
+
+import styles from "./Profile.module.css";
 
 export function Profile() {
     const user = useContext(AuthContext);
 
     return (
         <>
-            <div id="profile-title">
+            <div id={styles["profile-title"]}>
                 {user.userName ? (
                     <h1>Hello {user.userName?.toUpperCase()}, nice to see you!</h1>
                 ) : (
@@ -17,15 +19,15 @@ export function Profile() {
                 )}
             </div>
 
-            <Card id="profile-pic">
+            <Card id={styles["profile-pic"]}>
                 <img
                     src="https://riverlegacy.org/wp-content/uploads/2021/07/blank-profile-photo.jpeg"
                     alt="Profile pic"
                 />
             </Card>
 
-            <div id="profile-btn">
-                <Link to={"/profile/myCollection"} >
+            <div id={styles["profile-btn"]}>
+                <Link to={"/profile/myCollection"}>
                     <Button type="button" variant="success">
                         My Collection{" "}
                     </Button>{" "}

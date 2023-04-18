@@ -38,7 +38,14 @@ function App() {
         const { title, author, image, country, city, description } = data;
 
         try {
-            if (!title || !author || !image || !country || !city || !description) {
+            if (
+                title === "" ||
+                author === "" ||
+                image === "" ||
+                country === "" ||
+                city === "" ||
+                description === ""
+            ) {
                 throw new Error("Fill all the fields");
             }
 

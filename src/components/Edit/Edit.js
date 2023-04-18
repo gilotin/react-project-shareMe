@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useParams } from "react-router-dom";
 import * as photoService from "../../services/photoService"
 
+import styles from "./Edit.module.css"
 
 export function Edit() {
     const {photoId} = useParams();
@@ -31,8 +32,8 @@ export function Edit() {
 
     return (
         <>
-            <Form method="PUT" id="create-form" onSubmit={onSubmit}>
-                <div id="form-title">
+            <Form method="PUT" id={styles["edit-form"]} onSubmit={onSubmit}>
+                <div id={styles["edit-title"]}>
                     <h1>Edit Image</h1>
                 </div>
                 <Form.Group className="mb-3" controlId="formTitle">
@@ -93,8 +94,8 @@ export function Edit() {
                     onChange={changeHandler}
                     values={values.description}
                 />{" "}
-                <Button id="from-submit-btn" variant="primary" type="submit">Edit</Button>
-                <Button id="from-submit-btn" variant="primary" type="submit">
+                <Button className={styles["edit-submit-btn"]} variant="primary" type="submit">Edit</Button>
+                <Button className={styles["edit-submit-btn"]} variant="primary" type="submit">
                     Back
                 </Button>
             </Form>

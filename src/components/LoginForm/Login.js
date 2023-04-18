@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
 
-import "./login.css";
+import styles from "./login.module.css";
 
 export function Login() {
     const { onLoginSubmit } = useContext(AuthContext);
@@ -18,8 +18,8 @@ export function Login() {
     return (
         <div className="modal-show" style={{ display: "block", position: "initial" }}>
             <Modal.Body>
-                <Form id="login-form" method="POST" onSubmit={onSubmit}>
-                    <div id="login-title">
+                <Form id={styles['login-form']} method="POST" onSubmit={onSubmit}>
+                    <div id={styles['login-title']}>
                         <h1>Login</h1>
                     </div>
                     <Form.Group className="mb-3" controlId="loginEmail">

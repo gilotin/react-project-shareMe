@@ -16,7 +16,7 @@ export function Login() {
     const { values, changeHandler, onSubmit } = useForm({ email: "", password: "" }, onLoginSubmit);
 
     return (
-        <div className="modal show" style={{ display: "block", position: "initial" }}>
+        <div className="modal-show" style={{ display: "block", position: "initial" }}>
             <Modal.Body>
                 <Form id="login-form" method="POST" onSubmit={onSubmit}>
                     <div id="login-title">

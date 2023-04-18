@@ -1,0 +1,9 @@
+.alert {
+    position: fixed;
+    bottom: 20px; /* Adjust the bottom value to set the distance from the bottom of the screen */
+    right: 20px; /* Adjust the left value to set the distance from the left side of the screen */
+    background-color: #f8d7da; /* Set the background color of the alert */
+    color: #721c24; /* Set the text color of the alert */
+    padding: 10px 20px; /* Set the padding of the alert */
+    border-radius: 4px; /* Set the border radius of the alert */
+  }

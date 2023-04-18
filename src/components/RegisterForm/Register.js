@@ -20,17 +20,7 @@ export function Register() {
         },
         onRegisterSubmit
     );
-    // const [validated, setValidated] = useState(false);
-
-    // function handleSubmit(event) {
-    //     const form = event.currentTarget;
-    //     if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //     }
-
-    //     setValidated(true);
-    // }
+    
 
     return (
         <div className="modal show" style={{ display: "block", position: "initial" }}>

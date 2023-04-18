@@ -20,9 +20,9 @@ export function Navigation() {
                         <LinkContainer to={"/"}>
                             <Nav.Link>Home</Nav.Link>
                         </LinkContainer>
-                        <LinkContainer to={"/search"}>
+                        {/* <LinkContainer to={"/search"}>
                             <Nav.Link>Search</Nav.Link>
-                        </LinkContainer>
+                        </LinkContainer> */}
                         <LinkContainer to={"/catalog"}>
                             <Nav.Link>Catalog</Nav.Link>
                         </LinkContainer>

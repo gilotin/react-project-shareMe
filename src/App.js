@@ -19,11 +19,13 @@ import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
 import { Logout } from "./components/Logout/Logout";
 import { Edit } from "./components/Edit/Edit";
+import { AlertMessage } from "./components/AlertMessage/AlertMessage";
 
 function App() {
     const navigate = useNavigate();
     const [photos, setPhotos] = useState([]);
     const [auth, setAuth] = useState({});
+    const [showAlert, setShowAlert] = useState("");
 
     useEffect(() => {
         photoService.getAll().then((result) => {
@@ -32,35 +34,52 @@ function App() {
     }, []);
 
     async function onCreatePhotoSubmit(data) {
-        const newPhoto = await photoService.create(data);
+        const { title, author, image, country, city, description } = data;
 
-        setPhotos((photos) => [...photos, newPhoto]);
+        try {
+            if (!title || !author || !image || !country || !city || !description) {
+                throw new Error("Fill all the fields");
+            }
 
-        navigate("/catalog");
+            const newPhoto = await photoService.create(data);
+            setPhotos((photos) => [...photos, newPhoto]);
+
+            navigate("/catalog");
+        } catch (error) {
+            alertHandler(error.message);
+        }
     }
 
     async function onPhotoEdit(data) {
-        const editedPhoto = await photoService.edit(data, data._id);
-        setPhotos((photos) => [...photos, editedPhoto]);
-        navigate(-1);
+        try {
+            const editedPhoto = await photoService.edit(data, data._id);
+            setPhotos((photos) =>
+                photos.map((photo) => (photo._id === data._id ? editedPhoto : photo))
+            ); /// TO fix this
+            navigate(-1);
+        } catch (error) {
+            alertHandler(error.message);
+        }
     }
 
     async function onLoginSubmit(data) {
         try {
             const result = await authService.login(data);
-
             const { password, ...user } = result;
 
             localStorage.setItem("token", user.accessToken);
             setAuth(user);
+
             navigate("/catalog");
         } catch (error) {
-            console.log(error.message);
+            alertHandler(error.message);
         }
     }
 
     async function onRegisterSubmit(data) {
         const { repeatPassword, ...registerData } = data;
+
+        const regex = /^[\w\.-]+@[\w\.-]+\.\w+$/;
 
         try {
             if (
@@ -72,8 +91,16 @@ function App() {
                 throw new Error("Fill all the fields");
             }
 
-            if (registerData.password != repeatPassword) {
+            if (registerData.password !== repeatPassword) {
                 throw new Error("Password mismatch!");
+            }
+
+            if(!registerData.email.match(regex)){
+                throw new Error('Enter valid email address')
+            }
+
+            if(registerData.password.length < 6){
+                throw new Error('password must be at least 6 characters')
             }
 
             const result = await authService.register(registerData);
@@ -82,16 +109,20 @@ function App() {
             setAuth(user);
             navigate("/catalog");
         } catch (error) {
-            console.log(error.message);
+            alertHandler(error.message);
         }
     }
 
     async function onDeleteHandler(id) {
-       await photoService.deletePhoto(id);
+        try {
+            await photoService.deletePhoto(id);
 
-       setPhotos((photos => photos.filter(photo => photo._id !== id)));
+            setPhotos((photos) => photos.filter((photo) => photo._id !== id));
 
-        navigate(-1);
+            navigate(-1);
+        } catch (error) {
+            alertHandler(error.message);
+        }
     }
 
     const contextData = {
@@ -109,9 +140,21 @@ function App() {
     };
 
     async function onLogout() {
-        await authService.logout();
-        setAuth({});
-        localStorage.clear();
+        try {
+            await authService.logout();
+            localStorage.clear();
+            setAuth({});
+        } catch (error) {
+            alertHandler(error.message);
+        }
+    }
+
+    function alertHandler(error) {
+        setTimeout(() => {
+            setShowAlert("");
+        }, 2000);
+
+        return setShowAlert(error);
     }
 
     return (
@@ -123,7 +166,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
-                        <Route path="/search" element={<Search />} />
+                        {/* <Route path="/search" element={<Search />} /> */}
                         <Route path="/catalog" element={<Catalog photos={photos} />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/profile/CreateImage" element={<CreateImage />} />
@@ -134,6 +177,7 @@ function App() {
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
                     </Routes>
                 </main>
+                {showAlert ? <AlertMessage alert={showAlert} /> : ""}
             </div>
         </AuthContext.Provider>
     );

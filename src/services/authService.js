@@ -3,26 +3,33 @@ const baseUrl = "http://localhost:3030/users";
 // TO DO create requester for all services !!!
 
 export async function login(loginData) {
-    const response = await fetch(`${baseUrl}/login`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-    });
+    try {
+        const response = await fetch(`${baseUrl}/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(loginData),
+        });
 
-    if (response.status === 204) {
-        return {};
+        if (loginData.userName === "" || loginData.password === "") {
+            throw new Error("Fill all fields");
+        }
+
+        if (response.status === 204) {
+            return {};
+        }
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            throw result;
+        }
+
+        return result;
+    } catch (error) {
+        throw error
     }
-
-    const result = await response.json();
-
-    if (!response.ok) {
-        throw result;
-    }
-
-    return result;
-
 }
 
 export async function register(data) {
@@ -33,6 +40,10 @@ export async function register(data) {
         },
         body: JSON.stringify(data),
     });
+
+    if(response.status === 409){
+        throw new Error("email is already taken")
+    }
 
     if (!response.ok) {
         throw new Error("data is invalid");
@@ -46,22 +57,21 @@ export async function register(data) {
     }
 }
 
-//NEED Refactoring 
+//NEED Refactoring
 
 export async function logout() {
-
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     const response = await fetch(`${baseUrl}/logout`, {
         method: "GET",
         headers: {
             "Content-type": "Application/json",
-            "X-Authorization" : token
+            "X-Authorization": token,
         },
     });
-    
-    if(response.status === '204'){
-        return {}
-    }else{
+
+    if (response.status === "204") {
+        return {};
+    } else {
         localStorage.clear();
     }
 }

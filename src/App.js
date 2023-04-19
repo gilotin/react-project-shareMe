@@ -21,6 +21,7 @@ import { Logout } from "./components/Logout/Logout";
 import { Edit } from "./components/Edit/Edit";
 import { AlertMessage } from "./components/AlertMessage/AlertMessage";
 import { NotFound } from "./components/NotFound/NotFound";
+import { RouteGuard } from "./components/RouteGuard/RouteGuard";
 
 function App() {
     const navigate = useNavigate();
@@ -189,13 +190,15 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         {/* <Route path="/search" element={<Search />} /> */}
                         <Route path="/catalog" element={<Catalog photos={photos} />} />
-                        <Route path="/profile" element={<Profile />} />
-                        <Route path="/profile/CreateImage" element={<CreateImage />} />
-                        <Route path="/profile/myCollection" element={<MyCollection />} />
-                        <Route path="/myCollection/:photoId" element={<DetailPage />} />
-                        <Route path=":photoId/edit" element={<Edit />} />
-                        <Route path="/profile/logout" element={<Logout />} />
                         <Route path="catalog/:photoId/" element={<DetailPage />} />
+                        <Route element={<RouteGuard />}>
+                            <Route path="/profile" element={<Profile />} />
+                            <Route path="/profile/CreateImage" element={<CreateImage />} />
+                            <Route path="/profile/myCollection" element={<MyCollection />} />
+                            <Route path="/myCollection/:photoId" element={<DetailPage />} />
+                            <Route path=":photoId/edit" element={<Edit />} />
+                            <Route path="/profile/logout" element={<Logout />} />
+                        </Route>
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>

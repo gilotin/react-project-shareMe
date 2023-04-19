@@ -39,8 +39,8 @@ export function DetailPage() {
                 <h2>{photoDetails.title}</h2>
                 <h3>{photoDetails.author}</h3>
                 <h3>{photoDetails.description}</h3>
-                <h3>{photoDetails.location?.city}</h3>
-                <h3>{photoDetails.location?.country}</h3>
+                <h3>{photoDetails.city}</h3>
+                <h3>{photoDetails.country}</h3>
                 <img src={photoDetails.url} alt={photoDetails.title} />
             </div>
 

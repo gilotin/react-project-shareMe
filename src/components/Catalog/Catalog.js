@@ -1,6 +1,6 @@
 import { ImageCards } from "./ImageCard/ImageCards";
 
-import "./catalog.module.css";
+import  styles from"./catalog.module.css";
 
 export function Catalog({ photos }) {
     return (
@@ -10,7 +10,7 @@ export function Catalog({ photos }) {
                     <h1>Catalog is empty</h1>
                 </div>
             ) : (
-                <div className="main-catalog">
+                <div className={styles["main-catalog"]}>
                     {photos.map((photo) => (
                         <ImageCards key={photo._id} {...photo} />
                     ))}

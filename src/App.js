@@ -59,7 +59,20 @@ function App() {
     }
 
     async function onPhotoEdit(data) {
+        const { title, author, image, country, city, description } = data;
+
         try {
+            if (
+                title === "" ||
+                author === "" ||
+                image === "" ||
+                country === "" ||
+                city === "" ||
+                description === ""
+            ) {
+                throw new Error("Fill all the fields");
+            }
+
             const editedPhoto = await photoService.edit(data, data._id);
             setPhotos((photos) =>
                 photos.map((photo) => (photo._id === data._id ? editedPhoto : photo))
